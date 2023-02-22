@@ -13,8 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     @Autowired

@@ -14,8 +14,13 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank
     private Long userid;
+
+    @NotBlank
     private String task;
+
     private boolean completed;
 
     public Item() {
