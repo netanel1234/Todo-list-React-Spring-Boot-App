@@ -46,8 +46,9 @@ public class UserController {
     }
 
     @PostMapping
-    public User newUser(@RequestBody User newUser) {
-        return userRepository.save(newUser);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User newUser = userRepository.save(user);
+        return ResponseEntity.created(null).body(newUser);
     }
 
     @PutMapping("/{id}")
