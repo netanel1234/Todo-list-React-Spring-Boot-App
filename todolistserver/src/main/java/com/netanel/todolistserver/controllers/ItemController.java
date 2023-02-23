@@ -63,7 +63,7 @@ public class ItemController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}") 
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         itemRepository.deleteById(id);
         return ResponseEntity.noContent().build();

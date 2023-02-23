@@ -20,30 +20,28 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
 
-    public AuthController(TokenService tokenService, PasswordEncoder passwordEncoder) {
+    public AuthController(TokenService tokenService) {
         this.tokenService = tokenService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
     public ResponseEntity<String> home(Principal principal) {
-        System.out.println("CHECK!!!");
         return ResponseEntity.ok("Hello " + principal.getName() + "!");
     }
 
     @PostMapping("/token")
     public ResponseEntity<String> token(Authentication authentication) {
-        System.out.println("CHECK!!!");
         String token = tokenService.generateAuthToken(authentication);
         return ResponseEntity.ok(token);
     }
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User credentials) {
-        System.out.println("CHECK!!!");
         if (credentials.getUsername().length() < 2 || credentials.getPassword().length() < 5)
             return ResponseEntity.badRequest().body("Invalid Username or Password. Username min length: 2, Password min length: 5.");
 

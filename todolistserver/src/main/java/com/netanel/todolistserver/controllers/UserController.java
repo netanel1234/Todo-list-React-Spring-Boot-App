@@ -3,7 +3,6 @@ package com.netanel.todolistserver.controllers;
 import com.netanel.todolistserver.entities.User;
 import com.netanel.todolistserver.exceptions.UserNotFoundException;
 import com.netanel.todolistserver.repos.UserRepository;
-import com.netanel.todolistserver.service.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +19,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
 
-    public UserController(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
