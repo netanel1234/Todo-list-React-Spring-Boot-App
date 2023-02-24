@@ -3,33 +3,46 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:8080/api/items";
 
-const Todo = ({ handleDeleteItem, token, id, task }) => {
-  const [currTask, setCurrTask] = useState(task);
+const Todo = ({ handleDeleteItem, token, item }) => {
+  const [todoItem, setTodoItem] = useState(item);
 
-  const handleUpdate = async () => {
+  const handleTaskUpdate = async () => {
     try {
-      const response = await axios.get(apiUrl + "/" + id, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCurrTask(response.data);
+      setTodoItem({ ...todoItem, task: todoItem.task });
+
+      const response = await axios.put(
+        `${apiUrl}/${todoItem.id}`,
+        { task: todoItem.task },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div>
-      {currTask}
-      <button style={{ backgroundColor: "blue" }} onClick={handleUpdate}>
+    <>
+      completed:
+      <input
+        type="checkbox"
+        checked={todoItem.completed}
+        onChange={handleTaskUpdate}
+      />
+      <input
+        type="text"
+        value={todoItem.task}
+        onChange={(e) => setTodoItem({ ...todoItem, task: e.target.value })}
+      />
+      <button style={{ backgroundColor: "blue" }} onClick={handleTaskUpdate}>
         Update
       </button>
       <button
         style={{ backgroundColor: "red" }}
-        onClick={() => handleDeleteItem(id)}
+        onClick={() => handleDeleteItem(todoItem.id)}
       >
         Delete
       </button>
-    </div>
+    </>
   );
 };
 
