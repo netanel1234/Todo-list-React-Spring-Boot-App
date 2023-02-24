@@ -7,13 +7,7 @@ const apiUrl = "http://localhost:8080/api";
 const TodoListPage = () => {
   const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
-  const [todos, setTodos] = useState([
-    { id: 1, task: "Task #1", completed: true },
-    { id: 2, task: "Task #2", completed: false },
-    { id: 3, task: "Task #3", completed: true },
-    { id: 4, task: "Task #4", completed: false },
-    { id: 5, task: "Task #5", completed: true },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
