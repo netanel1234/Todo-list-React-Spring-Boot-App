@@ -18,27 +18,27 @@ const TodoListPage = () => {
   useEffect(() => {
     setToken(localStorage.getItem("token"));
 
-    // const fetchUsername = async () => {
-    //   try {
-    //     const response = await axios.get(apiUrl + "/me", {
-    //       headers: { Authorization: `Bearer ${token}` },
-    //     });
-    //     setUsername(response.data);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
+    const fetchUsername = async () => {
+      try {
+        const response = await axios.get(apiUrl + "/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUsername(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-    // const fetchTodos = async () => {
-    //   try {
-    //     const response = await axios.get(apiUrl + "/items", {
-    //       headers: { Authorization: `Bearer ${token}` },
-    //     });
-    //     setTodos(response.data);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get(apiUrl + "/items", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setTodos(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
   }, []);
 
   const handleDeleteItem = async (id) => {
