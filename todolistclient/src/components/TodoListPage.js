@@ -33,6 +33,9 @@ const TodoListPage = () => {
         console.error(error);
       }
     };
+
+    fetchUsername();
+    fetchTodos();
   }, []);
 
   const handleDeleteItem = async (id) => {
@@ -45,8 +48,6 @@ const TodoListPage = () => {
       console.error(error);
     }
   };
-
-  const handleLogout = () => {};
 
   return (
     <>

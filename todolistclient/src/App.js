@@ -16,7 +16,7 @@ function App() {
         <Route path="/api/todo-list" element={<TodoListPage />} />
         <Route path="/api/logout" element={<Logout />} />
         <Route path="/api/not-found" element={<NotFound />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<LoginForm />} />
       </Routes>
     </div>
   );
