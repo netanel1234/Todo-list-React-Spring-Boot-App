@@ -7,6 +7,7 @@ const RegistrationForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleRegistration = async (event) => {
     event.preventDefault();
@@ -20,13 +21,19 @@ const RegistrationForm = () => {
       localStorage.setItem("token", response.data);
       window.location = "/todo-list";
     } catch (error) {
-      console.error(error);
+      setError(error.data);
     }
   };
 
   return (
-    <div className="App">
-      <h1>Registration Form</h1>
+    <>
+      <h1>Registration</h1>
+      {error && (
+        <>
+          <div style={{ color: "red" }}>{error}</div>
+          <br />
+        </>
+      )}
       <form onSubmit={handleRegistration}>
         <div>
           <input
@@ -60,7 +67,7 @@ const RegistrationForm = () => {
         <br />
         <button type="submit">Register</button>
       </form>
-    </div>
+    </>
   );
 };
 

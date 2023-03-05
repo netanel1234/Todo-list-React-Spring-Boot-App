@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const apiUrl = "http://localhost:8080/api";
+
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const apiUrl = "http://localhost:8080/api";
+  const [error, setError] = useState("");
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -15,15 +16,22 @@ const LoginForm = () => {
         email: email,
         password: password,
       });
-      console.log(response);
+      localStorage.setItem("token", response.data);
+      window.location = "/todo-list";
     } catch (error) {
-      console.error(error);
+      setError(error);
     }
   };
 
   return (
-    <div className="App">
+    <>
       <h1>Login</h1>
+      {error && (
+        <>
+          <div style={{ color: "red" }}>{error}</div>
+          <br />
+        </>
+      )}
       <form onSubmit={handleLogin}>
         <div>
           <input
@@ -47,7 +55,7 @@ const LoginForm = () => {
         <br />
         <button type="submit">Login</button>
       </form>
-    </div>
+    </>
   );
 };
 

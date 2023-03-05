@@ -3,7 +3,7 @@ import axios from "axios";
 
 const apiUrl = "http://localhost:8080/api/items";
 
-const Todo = ({ handleDeleteItem, token, item }) => {
+const Todo = ({ handleDeleteItem, setError, token, item }) => {
   const [todoItem, setTodoItem] = useState(item);
 
   const handleTaskUpdate = async () => {
@@ -11,12 +11,12 @@ const Todo = ({ handleDeleteItem, token, item }) => {
       setTodoItem({ ...todoItem, task: todoItem.task });
 
       const response = await axios.put(
-        `${apiUrl}/${todoItem.id}`,
+        `${apiUrl}/todos/${todoItem.id}`,
         { task: todoItem.task },
         { headers: { Authorization: `Bearer ${token}` } }
       );
     } catch (error) {
-      console.error(error);
+      setError(error.data);
     }
   };
 

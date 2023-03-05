@@ -8,6 +8,7 @@ const TodoListPage = () => {
   const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
   const [todos, setTodos] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -19,7 +20,7 @@ const TodoListPage = () => {
         });
         setUsername(response.data);
       } catch (error) {
-        console.error(error);
+        setError(error.data);
       }
     };
 
@@ -30,7 +31,7 @@ const TodoListPage = () => {
         });
         setTodos(response.data);
       } catch (error) {
-        console.error(error);
+        setError(error.data);
       }
     };
 
@@ -45,18 +46,25 @@ const TodoListPage = () => {
       });
       setTodos(todos.filter((todo) => todo.id !== id));
     } catch (error) {
-      console.error(error);
+      setError(error.data);
     }
   };
 
   return (
     <>
       <h1>Hello {username}</h1>
+      {error && (
+        <>
+          <div style={{ color: "red" }}>{error}</div>
+          <br />
+        </>
+      )}
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
             <Todo
               handleDeleteItem={handleDeleteItem}
+              setError={setError}
               token={token}
               item={todo}
             />
