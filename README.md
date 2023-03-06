@@ -1,4 +1,4 @@
-# Todo-list-React-Spring-Boot-App
+# Todo list web application Java Spring Boot & React
 
 I wrote this project during my undergraduate studies in computer science. So we wrote the project using 
 **Vanilla Java**, **JavaServlets** and **JSP** and the client side was implemented with **HTML**.
