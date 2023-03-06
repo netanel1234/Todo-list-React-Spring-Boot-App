@@ -39,7 +39,7 @@ const TodoListPage = () => {
     fetchTodos();
   }, []);
 
-  const handleDeleteItem = async (id) => {
+  const deleteItem = async (id) => {
     try {
       const response = await axios.delete(`${apiUrl}/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -63,7 +63,7 @@ const TodoListPage = () => {
         {todos.map((todo) => (
           <li key={todo.id}>
             <Todo
-              handleDeleteItem={handleDeleteItem}
+              deleteItem={deleteItem}
               setError={setError}
               token={token}
               item={todo}
