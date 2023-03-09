@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const apiUrl = "http://localhost:8080/api";
@@ -28,6 +29,9 @@ const RegistrationForm = () => {
   return (
     <>
       <h1>Registration</h1>
+      <Link to="/api/login">To login page</Link>
+      <br />
+      <br />
       {error && (
         <>
           <div style={{ color: "red" }}>{error}</div>
