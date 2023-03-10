@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Todo from "./Todo";
 
@@ -9,6 +10,7 @@ const TodoListPage = () => {
   const [username, setUsername] = useState("");
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -71,7 +73,7 @@ const TodoListPage = () => {
           </li>
         ))}
       </ul>
-      <button onClick={() => (window.location = "/logout")}>Logout</button>
+      <button onClick={() => navigate("/logout")}>Logout</button>
     </>
   );
 };

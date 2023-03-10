@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const apiUrl = "http://localhost:8080/api";
@@ -9,6 +9,7 @@ const RegistrationForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleRegistration = async (event) => {
     event.preventDefault();
@@ -20,7 +21,7 @@ const RegistrationForm = () => {
         password: password,
       });
       localStorage.setItem("token", response.data);
-      window.location = "/todo-list";
+      navigate("/todo-list");
     } catch (error) {
       setError(error.data);
     }

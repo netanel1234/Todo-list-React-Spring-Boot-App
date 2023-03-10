@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -8,6 +9,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -18,7 +20,7 @@ const LoginForm = () => {
         password: password,
       });
       localStorage.setItem("token", response.data);
-      window.location = "/todo-list";
+      navigate("/todo-list");
     } catch (error) {
       setError(error);
     }
